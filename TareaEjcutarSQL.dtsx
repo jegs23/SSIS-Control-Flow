@@ -1,0 +1,223 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/6/2024 5:13:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-4GOM8QIJ"
+  DTS:CreatorName="LAPTOP-4GOM8QIJ\jorge"
+  DTS:DTSID="{7527BE42-0999-4120-9651-7191747A9ECD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="17418"
+  DTS:ObjectName="TareaEjcutarSQL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{8D6C111E-B31D-4562-A3A8-1C7A3C57A8E6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-4GOM8QIJ.NORTHWND]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{71330FDB-C967-4B36-A3CC-F94FCAB3852A}"
+      DTS:ObjectName="LAPTOP-4GOM8QIJ.NORTHWND">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-4GOM8QIJ;Initial Catalog=NORTHWND;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{71330FDB-C967-4B36-A3CC-F94FCAB3852A}LAPTOP-4GOM8QIJ.NORTHWND;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B94F2820-5C6F-49D2-9DF6-0796663CE262}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CustomerID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ACTUALIZAR PAIS A PARTIR DEL CUSTOMERID"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{A6BBA518-AB08-4945-B778-061674F3FC29}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ACTUALIZAR PAIS A PARTIR DEL CUSTOMERID"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{71330FDB-C967-4B36-A3CC-F94FCAB3852A}"
+          SQLTask:SqlStatementSource="UPDATE CUSTOMERS &#xA;SET Country='France'&#xA;WHERE CUSTOMERID='ALFKI'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ACTUALIZAR PAIS FRANCE A FRANCIA DE LA TABLA COSTUMER"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{A553227E-B77C-4CAD-B67B-53E6DE9F163D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ACTUALIZAR PAIS FRANCE A FRANCIA DE LA TABLA COSTUMER"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{71330FDB-C967-4B36-A3CC-F94FCAB3852A}"
+          SQLTask:SqlStatementSource="UPDATE CUSTOMERS &#xA;SET Country='Francia'&#xA;WHERE CUSTOMERID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::CustomerID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\OBTENIENDO EL CUSTOMERID A PARTIR DEL COUNTRY Y CONTACTNAME"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{3289DEFC-481A-4321-904D-02EB9923078B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="OBTENIENDO EL CUSTOMERID A PARTIR DEL COUNTRY Y CONTACTNAME"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{71330FDB-C967-4B36-A3CC-F94FCAB3852A}"
+          SQLTask:SqlStatementSource="SELECT CUSTOMERID FROM&#xA;CUSTOMERS&#xA;WHERE&#xA;COUNTRY='FRANCE' AND ContactName='MARIA ANDERS'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::CustomerID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{5CEC8496-6C32-446A-BDD4-A021169DF7EC}"
+      DTS:From="Package\ACTUALIZAR PAIS A PARTIR DEL CUSTOMERID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\OBTENIENDO EL CUSTOMERID A PARTIR DEL COUNTRY Y CONTACTNAME" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{02AE934B-224E-4987-9BA4-F26BC0E39B1F}"
+      DTS:From="Package\OBTENIENDO EL CUSTOMERID A PARTIR DEL COUNTRY Y CONTACTNAME"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\ACTUALIZAR PAIS FRANCE A FRANCIA DE LA TABLA COSTUMER" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="330,42"
+          Id="Package\ACTUALIZAR PAIS A PARTIR DEL CUSTOMERID"
+          TopLeft="80,106" />
+        <NodeLayout
+          Size="288,81"
+          Id="Package\OBTENIENDO EL CUSTOMERID A PARTIR DEL COUNTRY Y CONTACTNAME"
+          TopLeft="87,217" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="245,148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14,69"
+              Start="0,0"
+              End="-14,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.5"
+                    Point2="0,34.5"
+                    Point3="-4,34.5" />
+                  <mssgle:LineSegment
+                    End="-10,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10,34.5"
+                    Point2="-14,34.5"
+                    Point3="-14,38.5" />
+                  <mssgle:LineSegment
+                    End="-14,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="423,42"
+          Id="Package\ACTUALIZAR PAIS FRANCE A FRANCIA DE LA TABLA COSTUMER"
+          TopLeft="65,363" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="231,298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.5,65"
+              Start="0,0"
+              End="45.5,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="4,32.5" />
+                  <mssgle:LineSegment
+                    End="41.5,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="41.5,32.5"
+                    Point2="45.5,32.5"
+                    Point3="45.5,36.5" />
+                  <mssgle:LineSegment
+                    End="45.5,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
